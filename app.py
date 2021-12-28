@@ -23,13 +23,11 @@ def register():
     if request.method == 'POST':
         name = request.form['name']
         password = request.form['password']
-
         hashed_password = generate_password_hash(password)
-
         db = get_database() 
         db.execute('insert into users ( name, password) values (?, ?)', [name, hashed_password])
         db.commit()
-
+        print("**********************************************database*****************************************88")
         return redirect(url_for('index'))
 
     return render_template('register.html')
