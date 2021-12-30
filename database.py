@@ -4,7 +4,7 @@ import sqlite3
 
 #Connect to the database 
 def connect_to_database():
-    sql = sqlite3.connect('employeeapplication.db')
+    sql = sqlite3.connect('employeeapplication.db') 
     sql.row_factory = sqlite3.Row
     return sql  
 

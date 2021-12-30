@@ -59,30 +59,30 @@ Description: HTML page for added a single employee
                       <div class="col-md-8">
                         <div class="card-body">
                           <h3 class="card-title">Employee Details.</h3>
-                            
+                          {% if single_emp %}
                           <ul class="list-group list-group-numbered">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                               <div class="ms-2 me-auto">
-                                <div class="fw-bold">Full Name : </div>
+                                <div class="fw-bold">Full Name : {{single_emp['name']}}</div>
                               </div>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                               <div class="ms-2 me-auto">
-                                <div class="fw-bold">Email ID : </div>
+                                <div class="fw-bold">Email ID :  {{single_emp['email']}}</div>
                                 </div>
                            
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                               <div class="ms-2 me-auto">
-                                <div class="fw-bold">Phone : </div>
+                                <div class="fw-bold">Phone :  {{single_emp['phone']}}</div>
                                 </div>
                            
                               <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                  <div class="fw-bold">Address : </div>
+                                  <div class="fw-bold">Address :  {{single_emp['address']}}</div>
                                     </div>
                               </li>
                               <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                  <div class="fw-bold">Joining Date : </div>
+                                  <div class="fw-bold">Joining Date :  {{single_emp['joining_date']}}</div>
                                 </div>
                               </li>
 
@@ -91,31 +91,31 @@ Description: HTML page for added a single employee
                                   <div class="fw-bold">Total Project Handled</div>
                                   Websites and Mobile Apps.
                                 </div>
-                                <span class="badge bg-success rounded-pill">14</span>
+                                <span class="badge bg-success rounded-pill">{{single_emp['total_projects']}}</span>
                               </li>
                               <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                   <div class="fw-bold">Total Test Cases</div>
                                   Total test case written and reviewed
                                 </div>
-                                <span class="badge bg-info rounded-pill">14</span>
+                                <span class="badge bg-info rounded-pill">{{single_emp['total_test_case']}} </span>
                               </li>
                               <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                   <div class="fw-bold">Total Defects</div>
                                   Total defects found and rectified so far.
                                 </div>
-                                <span class="badge bg-warning rounded-pill">14</span>
+                                <span class="badge bg-warning rounded-pill">{{single_emp['total_defects_found']}}</span>
                               </li>
                               <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                   <div class="fw-bold">Total Defects Pending</div>
                                   Total defects pending for next release.
                                 </div>
-                                <span class="badge bg-danger rounded-pill">14</span>
+                                <span class="badge bg-danger rounded-pill">{{single_emp['total_defects_pending']}}</span>
                               </li>
                           </ul>
-
+                          {% endif %}
                           <p class="card-text"><small class="text-muted">Last updated on : </small></p>
                         </div>
                       </div>
