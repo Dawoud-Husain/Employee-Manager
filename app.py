@@ -1,10 +1,12 @@
-from flask import Flask, url_for, request, redirect, session, g
+from flask import Flask, url_for, request, session, g
 from flask.templating import render_template
+
+from werkzeug.utils import redirect
 from database import get_database
 
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-import sqlite3 
+import sqlite3
 
 app = Flask(__name__)
 
@@ -35,6 +37,7 @@ def index():
     user = get_current_user()
     return render_template('home.html', user = user)
 
+#Login User By Verifying Entered Username and Password
 @app.route('/login',  methods = ["POST", "GET"] )
 def login():
     user = get_current_user()
@@ -44,8 +47,6 @@ def login():
     if request.method == 'POST':
         name = request.form['name']
         password = request.form['password']
-        
-
         
         user_cursor = db.execute('select * from users where name = ?', [name])
         user = user_cursor.fetchone()
@@ -65,8 +66,7 @@ def login():
     return render_template('login.html', loginerror = error, user = user)
 
 #Register Meathod
-#Gets the username and password and update the database with the hashed password
-
+#Receives the entered username and password and update the database with a hashed password
 @app.route('/register', methods = ["POST", "GET"])
 def register():
     
@@ -88,17 +88,15 @@ def register():
 
     return render_template('register.html', user = user )
 
-# Show all employees in the dashboard for the current user session 
+# Fetch and show all employees in the dashboard for the current user session 
 @app.route('/dashboard')
 def dashboard():
     user = get_current_user()
     db = get_database()
-    if request.method == "GET":
-        emp_cur = db.execute ('select * from emp')
-        allemp = emp_cur.fetchall()
-        return render_template('dashboard.html', user = user, allemp = allemp)
-
-  
+   
+    emp_cur = db.execute ('select * from emp')
+    allemp = emp_cur.fetchall()
+    return render_template('dashboard.html', user = user, allemp = allemp)
 
 #Retreive the information from the addnewemployee page and update the database
 @app.route('/addnewemployee', methods = ["POST", "GET"]) 
@@ -113,7 +111,6 @@ def addnewemployee():
 
         db = get_database()
         db.execute('insert into emp (name, email, phone, address) values (?,?,?,?)', [name, email, phone, address])
-
         db.commit()
 
         return redirect(url_for('dashboard'))
@@ -125,16 +122,36 @@ def addnewemployee():
 def singleemployee(empid):
     user = get_current_user()
     db = get_database()
-    cmp_cur = db.execute('select * from emp where empid = ?', [empid])
-    single_emp = cmp_cur.fetchone()
+    emp_cur = db.execute('select * from emp where empid = ?', [empid])
+    single_emp = emp_cur.fetchone()
 
 
     return render_template('singleemployee.html', user = user, single_emp = single_emp) 
 
-@app.route('/update')
-def update():
+
+@app.route('/fetchone/<int:empid>')
+def fetchone(empid):
     user = get_current_user()
-    return render_template('update.html', user = user) 
+    db = get_database()
+    emp_cur = db.execute('select * from emp where empid = ?', [empid])
+    single_emp = emp_cur.fetchone()
+    return render_template('updateemployee.html', user = user, single_emp = single_emp)
+
+
+@app.route('/updateemployee', methods = ["POST", "GET"])
+def updateemployee():
+    user = get_current_user()
+    if request.method == 'POST':
+        empid = request.form['empid']
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+        address = request.form['address']
+        db = get_database()
+        db.execute('update emp set name = ?, email = ?, phone = ?, address = ?, where empid = ?', [name, email, phone, address, empid])
+        db.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('updateemployee.html', user = user) 
 
 #Deletes empployee from database
 @app.route('/deleteemp/<int:empid>', methods = ["GET", "POST"])
@@ -147,11 +164,12 @@ def deleteemp(empid):
         db.commit()
         return redirect(url_for('dashboard'))
     return render_template('dashboard.html', user = user)
+    
 #Logs out of user session
 @app.route('/logout')
 def logout():
     session.pop('user', None)
-    return render_template('home.html')
+    render_template('home.html')
 
 #Run App
 if __name__ == '__main__':
