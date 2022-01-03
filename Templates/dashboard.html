@@ -62,7 +62,7 @@
                       </thead>
                       <tbody>
                         {% for emp in allemp %}
-                          
+                        {% if emp['supervisor_id'] == user['id'] %}
                         
                         
                           <tr>
@@ -77,7 +77,7 @@
                           </tr>
 
                           
-                        
+                        {% endif %}
                         {% endfor %}
                         <tr>
                       

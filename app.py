@@ -31,6 +31,12 @@ def get_current_user ():
 
     return user 
 
+def get_current_user_id ():
+    user = get_current_user()
+    user_id = user['id']    
+
+    return user_id 
+
 #Starting Page
 @app.route('/')
 def index():
@@ -102,15 +108,18 @@ def dashboard():
 @app.route('/addnewemployee', methods = ["POST", "GET"]) 
 def addnewemployee():
     user = get_current_user()
+    db = get_database()
 
     if request.method == "POST":
+        supervisor_id = get_current_user_id()
+        
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
         address = request.form['address']
 
         db = get_database()
-        db.execute('insert into emp (name, email, phone, address) values (?,?,?,?)', [name, email, phone, address])
+        db.execute('insert into emp (supervisor_id, name, email, phone, address) values (?,?,?,?,?)', [supervisor_id, name, email, phone, address])
         db.commit()
 
         return redirect(url_for('dashboard'))
