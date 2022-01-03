@@ -148,7 +148,8 @@ def updateemployee():
         phone = request.form['phone']
         address = request.form['address']
         db = get_database()
-        db.execute('update emp set name = ?, email = ?, phone = ?, address = ?, where empid = ?', [name, email, phone, address, empid])
+        db.execute('update emp set name = ?, email = ? , phone = ? , address = ?  where empid = ?', [name, email, phone, address, empid])
+        
         db.commit()
         return redirect(url_for('dashboard'))
     return render_template('updateemployee.html', user = user) 
@@ -169,7 +170,7 @@ def deleteemp(empid):
 @app.route('/logout')
 def logout():
     session.pop('user', None)
-    render_template('home.html')
+    return render_template('home.html')
 
 #Run App
 if __name__ == '__main__':
