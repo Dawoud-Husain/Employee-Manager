@@ -80,65 +80,10 @@ ul.app-badge li a img {
   }
 }
 
-ul.post-tag {
-  margin-bottom: 20px;
-}
-
-ul.post-tag li {
-  font-size: 14px;
-}
-
-ul.post-tag li img {
-  width: 25px;
-  height: 25px;
-  border-radius: 100%;
-  margin-right: 5px;
-}
-
-ul.post-tag li a {
-  font-size: 14px;
-}
-
-ul.post-tag li:last-child {
-  margin-left: 25px;
-}
-
-ul.social-links {
-  margin-bottom: 0;
-}
-
-ul.social-links li:first-child a {
-  padding-left: 0;
-}
-
-ul.social-links li a {
-  padding: 0 15px;
-  display: block;
-}
-
-ul.social-links li a i {
-  font-size: 20px;
-  color: #000;
-}
-
 body {
   overflow-x: hidden;
 }
-
-.shadow, .service .service-box, .founder img, .team-sm .image img, .job-list .block, .privacy .block, .user-login .block .image img, .coming-soon .block .count-down .syotimer-cell {
-  box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.08);
-}
-
-.overlay:before {
-  content: '';
-  background: rgba(105, 140, 230, 0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
+b
 a {
   font-size: inherit;
   color: inherit;
@@ -159,8 +104,7 @@ a:hover {
 }
 
 .bg-1 {
-  /* background: url(../images/background/promo-video-back.jpg) fixed no-repeat; */
-  background: url(..static/ipad.jpg) fixed no-repeat;
+  background: url(../images/background/promo-video-back.jpg) fixed no-repeat;
   background-size: cover;
 }
 
@@ -2113,97 +2057,3 @@ hr {
   color: #000;
 }
 
-.coming-soon {
-  color: #000;
-  padding: 120px 0;
-  min-height: 100vh;
-}
-
-@media (max-width: 992px) {
-  .coming-soon {
-    padding: 80px 0;
-  }
-}
-
-.coming-soon .block h3 {
-  color: #808080;
-}
-
-.coming-soon .block .count-down {
-  margin-top: 70px;
-}
-
-@media (max-width: 768px) {
-  .coming-soon .block .count-down {
-    margin-top: 40px;
-  }
-}
-
-.coming-soon .block .count-down .syotimer-cell {
-  min-width: 200px;
-  padding: 45px 0;
-  margin-right: 30px;
-  margin-bottom: 20px;
-  background: #fff;
-  display: inline-block;
-}
-
-@media (max-width: 768px) {
-  .coming-soon .block .count-down .syotimer-cell {
-    min-width: 180px;
-    padding: 35px 0;
-  }
-}
-
-.coming-soon .block .count-down .syotimer-cell .syotimer-cell__value {
-  font-size: 65px;
-  line-height: 80px;
-  text-align: center;
-  position: relative;
-  font-weight: bold;
-}
-
-.coming-soon .block .count-down .syotimer-cell .syotimer-cell__unit {
-  font-size: 20px;
-  color: #6c6c6c;
-  text-transform: uppercase;
-  font-weight: normal;
-}
-
-.address .block .address-block {
-  text-align: center;
-}
-
-.address .block .address-block .icon {
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-.address .block .address-block .icon i {
-  display: block;
-  height: 100px;
-  width: 100px;
-  background: #fafafa;
-  border-radius: 100%;
-  font-size: 45px;
-  text-align: center;
-  line-height: 100px;
-}
-
-.google-map {
-  position: relative;
-}
-
-.google-map #map_canvas {
-  height: 500px;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .google-map #map_canvas {
-    height: 350px;
-  }
-}
-
-/*# sourceMappingURL=style.css.map */
