@@ -13,4 +13,4 @@ requests==2.27.1
 urllib3==1.26.7
 Werkzeug==2.0.2
 yarg==0.1.9
-gunicorn
+gunicorn==20.1.0
