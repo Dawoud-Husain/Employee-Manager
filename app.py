@@ -8,6 +8,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import sqlite3
 
+import logging
+import sys
+
 app = Flask(__name__)
 
 #store the user into a session 
@@ -181,7 +184,11 @@ def logout():
     session.pop('user', None)
     return render_template('home.html')
 
+
 #Run App
 if __name__ == '__main__':
     app.run(debug=True) 
+    
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
 
